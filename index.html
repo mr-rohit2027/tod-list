@@ -1,26 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Todo List</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo List</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <main class="app-shell">
-    <h1>Todo List</h1>
-    <form id="todo-form" class="todo-form">
-      <label for="todo-input">Add a task</label>
-      <div class="input-row">
-        <input id="todo-input" type="text" placeholder="What needs done?" autocomplete="off" />
-        <button type="submit">Add</button>
-      </div>
-    </form>
-    <section class="todo-list-container">
-      <ul id="todo-list" class="todo-list"></ul>
-      <div id="empty-state" class="empty-state">Your todo list is empty.</div>
-    </section>
-  </main>
-  <script src="script.js"></script>
+    <header class="app-nav">
+        <div class="nav-brand">
+            <span class="nav-logo">✔</span>
+            <div>
+                <p class="nav-title">Todo List</p>
+                <p class="nav-subtitle">Track tasks with style</p>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="#todo-form">Add Task</a>
+            <a href="#todo-list">Tasks</a>
+            <a href="#empty-state">Empty</a>
+        </nav>
+    </header>
+    <main class="app-shell">
+        <h1>Todo List</h1>
+        <form id="todo-form" class="todo-form">
+            <label for="todo-input">Add a task</label>
+            <div class="input-row">
+                <input id="todo-input" type="text" placeholder="What needs done?" autocomplete="off" />
+                <button type="submit">Add</button>
+            </div>
+        </form>
+        <section class="todo-list-container">
+            <ul id="todo-list" class="todo-list"></ul>
+            <div id="empty-state" class="empty-state">Your todo list is empty.</div>
+        </section>
+    </main>
+    <script src="script.js"></script>
 </body>
+
 </html>
