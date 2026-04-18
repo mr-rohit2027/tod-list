@@ -6,17 +6,20 @@ A clean, responsive todo list app built with vanilla HTML, CSS, and JavaScript. 
 
 - Add new tasks quickly
 - Mark tasks as completed
+- Edit task text inline
 - Delete tasks you no longer need
-- Progress bar showing completion percentage
+- Switch between Personal and Work todo lists
+- Progress bar showing completion percentage for current list
 - Responsive layout for desktop and mobile
 - Dark-themed styling with smooth interactions
 
 ## Getting Started
 
 1. Open `index.html` in your browser.
-2. Type a task into the input field.
-3. Click `Add` to create the task.
-4. Use `Done` to complete a task and `Delete` to remove it.
+2. Switch between "Personal" and "Work" tabs to manage different lists.
+3. Type a task into the input field.
+4. Click `Add` to create the task.
+5. Use `Done` to complete a task, `Edit` to change the text, or `Delete` to remove it.
 
 ## Project Structure
 
@@ -26,8 +29,9 @@ A clean, responsive todo list app built with vanilla HTML, CSS, and JavaScript. 
 
 ## Notes
 
-- The task list is stored only in memory, so refreshing the page will clear the list.
-- This is a great starter app for learning JavaScript DOM manipulation.
+- The task lists are stored only in memory, so refreshing the page will clear them.
+- Progress bar shows completion for the currently active list.
+- Edit tasks by clicking the Edit button, then Save or Cancel.
 
 ## Next Improvements
 

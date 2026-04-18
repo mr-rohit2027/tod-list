@@ -109,6 +109,27 @@ h1 {
     letter-spacing: -0.04em;
 }
 
+.tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.tab {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #334155;
+    color: #cbd5e1;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 160ms ease, color 160ms ease;
+}
+
+.tab.active {
+    background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    color: white;
+}
+
 .progress-container {
     margin-bottom: 1.5rem;
     display: grid;
@@ -240,6 +261,21 @@ button:active {
     border-radius: 12px;
     padding: 0.5rem 0.75rem;
     font-size: 0.9rem;
+}
+
+.edit-input {
+    width: 100%;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    padding: 0.5rem;
+    background: #0f172a;
+    color: #e2e8f0;
+    font-size: 1rem;
+}
+
+.edit-input:focus {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
 }
 
 .empty-state {

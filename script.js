@@ -4,26 +4,35 @@ const todoList = document.getElementById('todo-list');
 const emptyState = document.getElementById('empty-state');
 const progressFill = document.getElementById('progress-fill');
 const progressText = document.getElementById('progress-text');
+const tabPersonal = document.getElementById('tab-personal');
+const tabWork = document.getElementById('tab-work');
 
-const todos = [];
+const todos = {
+    personal: [],
+    work: []
+};
+
+let currentList = 'personal';
 
 function updateProgress() {
-    const total = todos.length;
-    const completed = todos.filter(todo => todo.completed).length;
+    const list = todos[currentList];
+    const total = list.length;
+    const completed = list.filter(todo => todo.completed).length;
     const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
     progressFill.style.width = `${percentage}%`;
     progressText.textContent = `${percentage}% complete`;
 }
 
 function renderTodos() {
+    const list = todos[currentList];
     todoList.innerHTML = '';
-    if (todos.length === 0) {
+    if (list.length === 0) {
         emptyState.style.display = 'block';
         return;
     }
     emptyState.style.display = 'none';
 
-    todos.forEach((todo, index) => {
+    list.forEach((todo, index) => {
         const li = document.createElement('li');
         li.className = `todo-item${todo.completed ? ' completed' : ''}`;
 
@@ -37,8 +46,47 @@ function renderTodos() {
         const toggleButton = document.createElement('button');
         toggleButton.textContent = todo.completed ? 'Undo' : 'Done';
         toggleButton.addEventListener('click', () => {
-            todos[index].completed = !todos[index].completed;
+            todos[currentList][index].completed = !todos[currentList][index].completed;
             renderTodos();
+        });
+
+        const editButton = document.createElement('button');
+        editButton.textContent = 'Edit';
+        editButton.addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.value = todo.text;
+            input.className = 'edit-input';
+            text.replaceWith(input);
+            input.focus();
+            input.select();
+
+            const saveButton = document.createElement('button');
+            saveButton.textContent = 'Save';
+            saveButton.addEventListener('click', () => {
+                const newText = input.value.trim();
+                if (newText) {
+                    todos[currentList][index].text = newText;
+                }
+                renderTodos();
+            });
+
+            const cancelButton = document.createElement('button');
+            cancelButton.textContent = 'Cancel';
+            cancelButton.addEventListener('click', () => {
+                renderTodos();
+            });
+
+            actions.innerHTML = '';
+            actions.append(saveButton, cancelButton);
+
+            input.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    saveButton.click();
+                } else if (e.key === 'Escape') {
+                    cancelButton.click();
+                }
+            });
         });
 
         const deleteButton = document.createElement('button');
@@ -46,24 +94,34 @@ function renderTodos() {
         deleteButton.addEventListener('click', () => {
             li.classList.add('removing');
             setTimeout(() => {
-                todos.splice(index, 1);
+                todos[currentList].splice(index, 1);
                 renderTodos();
             }, 180);
         });
 
-        actions.append(toggleButton, deleteButton);
+        actions.append(toggleButton, editButton, deleteButton);
         li.append(text, actions);
         todoList.appendChild(li);
     });
     updateProgress();
 }
 
+function switchList(list) {
+    currentList = list;
+    tabPersonal.classList.toggle('active', list === 'personal');
+    tabWork.classList.toggle('active', list === 'work');
+    renderTodos();
+}
+
+tabPersonal.addEventListener('click', () => switchList('personal'));
+tabWork.addEventListener('click', () => switchList('work'));
+
 todoForm.addEventListener('submit', event => {
     event.preventDefault();
     const value = todoInput.value.trim();
     if (!value) return;
 
-    todos.push({ text: value, completed: false });
+    todos[currentList].push({ text: value, completed: false });
     todoInput.value = '';
     renderTodos();
 });
