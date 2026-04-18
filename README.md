@@ -7,6 +7,7 @@ A clean, responsive todo list app built with vanilla HTML, CSS, and JavaScript. 
 - Add new tasks quickly
 - Mark tasks as completed
 - Delete tasks you no longer need
+- Progress bar showing completion percentage
 - Responsive layout for desktop and mobile
 - Dark-themed styling with smooth interactions
 

@@ -2,8 +2,18 @@ const todoForm = document.getElementById('todo-form');
 const todoInput = document.getElementById('todo-input');
 const todoList = document.getElementById('todo-list');
 const emptyState = document.getElementById('empty-state');
+const progressFill = document.getElementById('progress-fill');
+const progressText = document.getElementById('progress-text');
 
 const todos = [];
+
+function updateProgress() {
+    const total = todos.length;
+    const completed = todos.filter(todo => todo.completed).length;
+    const percentage = total === 0 ? 0 : Math.round((completed / total) * 100);
+    progressFill.style.width = `${percentage}%`;
+    progressText.textContent = `${percentage}% complete`;
+}
 
 function renderTodos() {
     todoList.innerHTML = '';
@@ -45,6 +55,7 @@ function renderTodos() {
         li.append(text, actions);
         todoList.appendChild(li);
     });
+    updateProgress();
 }
 
 todoForm.addEventListener('submit', event => {
