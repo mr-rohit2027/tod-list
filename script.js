@@ -6,10 +6,12 @@ const progressFill = document.getElementById('progress-fill');
 const progressText = document.getElementById('progress-text');
 const tabPersonal = document.getElementById('tab-personal');
 const tabWork = document.getElementById('tab-work');
+const tabOther = document.getElementById('tab-other');
 
 const todos = {
     personal: [],
-    work: []
+    work: [],
+    other: []
 };
 
 let currentList = 'personal';
@@ -110,11 +112,13 @@ function switchList(list) {
     currentList = list;
     tabPersonal.classList.toggle('active', list === 'personal');
     tabWork.classList.toggle('active', list === 'work');
+    tabOther.classList.toggle('active', list === 'other');
     renderTodos();
 }
 
 tabPersonal.addEventListener('click', () => switchList('personal'));
 tabWork.addEventListener('click', () => switchList('work'));
+tabOther.addEventListener('click', () => switchList('other'));
 
 todoForm.addEventListener('submit', event => {
     event.preventDefault();
